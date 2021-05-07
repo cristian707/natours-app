@@ -12,20 +12,6 @@ pipeline {
     stages {
         stage('docker login') {
             steps{
-pipeline {
-    agent { 
-        kubernetes{
-            label 'jenkins-slave'
-        }
-        
-    }
-    environment{
-        DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
-    }
-    stages {
-        stage('docker login') {
-            steps{
                 sh(script: """
                     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
                 """, returnStdout: true) 
